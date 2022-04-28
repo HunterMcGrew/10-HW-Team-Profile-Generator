@@ -25,4 +25,7 @@ function generateHtml(data) {
     </body>
     </html>
     `
+    return html;
 }
+
+module.exports = generateHtml; 
