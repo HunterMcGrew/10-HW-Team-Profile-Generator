@@ -2,7 +2,9 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const express = require("express");
-const generateHtml = require("./src/page-template");
+const startHtml = require("./src/start-template");
+const employeeHtml = require("./src/employee-template");
+const finishHtml = require("./src/finish-template");
 
 // import modules from classes
 const Employee = require("./lib/Employee");
@@ -56,7 +58,7 @@ function addTeamMember() {
             name: "role",
         }
     ])
-    .then( (name, id, email, role) => {
+    .then( (name, id, email, role, roleType) => {
         
         let roleType = "";
 
@@ -89,6 +91,8 @@ function addTeamMember() {
                 name: addMore
             }
         ])
+        
+
     })
 
     // then take this info, (maybe push?), tell it what class to use, and send it to the HTML generator
