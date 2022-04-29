@@ -1,6 +1,6 @@
 // function to finish generated index.html
 
-function finishHtml(data) {
+function finishHtml() {
 
     const html = `</main>
         

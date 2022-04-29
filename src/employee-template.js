@@ -1,6 +1,9 @@
 // function to finish generated index.html
 
-function employeeHtml(data) {
+function employeeHtml(name, id, email, role, roleType, addMore) {
+
+    // const name = ${name};
+
 
     const html = `<div class="generated">
     <div class="card">

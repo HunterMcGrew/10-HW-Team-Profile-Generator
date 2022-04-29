@@ -1,6 +1,6 @@
 // function to generate index.html 
 
-function startHtml(data) {
+function startHtml() {
 
     const html = `<!DOCTYPE html>
     <html lang="en">

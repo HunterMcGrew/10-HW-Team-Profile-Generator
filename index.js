@@ -12,6 +12,8 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 
+var teamMembers = [];
+
 // add team member function
 function addTeamMember() {
     
@@ -58,7 +60,7 @@ function addTeamMember() {
             name: "role",
         }
     ])
-    .then( (name, id, email, role, roleType) => {
+    .then( (name, id, email, role, roleType, addMore) => {
         
         let roleType = "";
 
@@ -94,12 +96,33 @@ function addTeamMember() {
         
 
     })
+    .then( function(name, id, email, role, roleType, teamMember) {
+        let data = (name, id, email, role, roleType);
+        let teamMember;
+
+        if (role === "Engineer") {
+            teamMember = new Engineer(name, id, email, role, roleType);
+        } else if (role === "Intern") {
+            teamMember = new Intern(name, id, email, role, roleType);
+        } else {
+            teamMember = new Manager(name, id, email, role, roleType);
+        };
+
+        teamMembers.push(teamMembers);
+    })
 
     // then take this info, (maybe push?), tell it what class to use, and send it to the HTML generator
-}
+};
+
+// function addEmployee () {
+
+//     fs.appendFile
+// }
 
 function init () {
-    addTeamMember();
+    fs.writeFileSync("./dist/index.html", startHtml) // generate start-template html file
+    .then( addTeamMember()) // then prompt for questions about team member 
+    .catch((err) => console.log(err)) // check for errors
        
         
 };
