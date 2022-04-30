@@ -16,7 +16,10 @@ const Manager = require("./lib/Manager");
 const teamMembers = [];
 
 // employee question prompts
-const addEmployee = () => {
+const addTeamMember = () => {
+
+    // check const
+    console.log(teamMembers);
 
     return inquirer.prompt([
         {
@@ -85,7 +88,7 @@ const addEmployee = () => {
         {
             type: "input",
             message: "Enter their office number...",
-            name: "office",
+            name: "officeNum",
             when: input => input.role === "Manager",
             validate: (answer) => {
                 if (answer.legnth < 1) {
@@ -93,11 +96,36 @@ const addEmployee = () => {
                 }
                 return true;
             }
+        },
+        {
+            type: "list",
+            message: "Would you like to add more team members?",
+            choices: ["yes", "no"],
+            name: "addMore"
         }
-
-       
     ])
+    .then(teamMemberData => {
+        // taking info gathered above to use on class/tempaltes
+
+        let {role, name, id, email, school, github, officeNum, addMore} = teamMemberData;
+
+        let teamMember;
+
+        if (role === "Intern") {
+            teamMember = new Intern(name, id, email, school);
+        } else if (role === "Engineer") {
+            teamMember = new Engineer(name, id, email, github);
+        } else {
+            teamMember = new Manager(name, id, email, officeNum);
+        }
+        teamMembers.push(teamMember);
+
+        if (addMore === "yes") {
+            return addTeamMember();
+        };
+
+    })
 };
 
-addEmployee()
+addTeamMember()
 .catch((err) => {console.log(err)})
