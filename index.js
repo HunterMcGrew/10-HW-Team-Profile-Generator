@@ -3,9 +3,9 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 // HTML generation
-const startHtml = require("./src/start-template");
-const employeeHtml = require("./src/employee-template");
-const finishHtml = require("./src/finish-template");
+const generateHtml = require("./src/start-template");
+// const employeeHtml = require("./src/employee-template");
+// const finishHtml = require("./src/finish-template");
 
 // modules for employee roles
 const Engineer = require("./lib/Engineer");
@@ -64,7 +64,7 @@ const addTeamMember = () => {
         {
             type: "input",
             message: "What school did they attend?",
-            name: "school",
+            name: "roleType",
             when: input => input.role === "Intern",
             validate: (answer) => {
                 if (answer.length < 1) {
@@ -76,7 +76,7 @@ const addTeamMember = () => {
         {
             type: "input",
             message: "What is their GitHub profile link?",
-            name: "github",
+            name: "roleType",
             when: input => input.role === "Engineer",
             validate: (answer) => {
                 if (answer.legnth < 1) {
@@ -88,7 +88,7 @@ const addTeamMember = () => {
         {
             type: "input",
             message: "Enter their office number...",
-            name: "officeNum",
+            name: "roleType",
             when: input => input.role === "Manager",
             validate: (answer) => {
                 if (answer.legnth < 1) {
@@ -107,18 +107,18 @@ const addTeamMember = () => {
     .then(teamMemberData => {
         // taking info gathered above to use on class/tempaltes
 
-        let {role, name, id, email, school, github, officeNum, addMore} = teamMemberData;
+        let {role, name, id, email, roleType, addMore} = teamMemberData;
 
         let teamMember;
 
         if (role === "Intern") {
-            teamMember = new Intern(name, id, email, school);
+            teamMember = new Intern(role, name, id, email, roleType);
         } else if (role === "Engineer") {
-            teamMember = new Engineer(name, id, email, github);
+            teamMember = new Engineer(role, name, id, email, roleType);
         } else {
-            teamMember = new Manager(name, id, email, officeNum);
+            teamMember = new Manager(role, name, id, email, roleType);
         }
-        teamMembers.push(teamMember);
+        teamMembers.push(teamMember);  // push teamMember to teamMembers Array
 
         if (addMore === "yes") {
             return addTeamMember();
@@ -127,5 +127,9 @@ const addTeamMember = () => {
     })
 };
 
+
 addTeamMember()
+.then(teamMembers => {
+    return generateHtml(teamMembers);
+})
 .catch((err) => {console.log(err)})
