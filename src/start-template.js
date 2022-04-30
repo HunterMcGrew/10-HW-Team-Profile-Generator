@@ -23,7 +23,7 @@ const generateHtml = (teamMembers) => {
     
 };
 
-const generateTeamMember = () => {
+const generateTeamMember = () => {  // need some kind of array to cycle through all teamMembers and do this function until it's over and join/merge it with top and bottom HTML files.
 
     const html2 = `<div class="generated">
     <div class="card">
