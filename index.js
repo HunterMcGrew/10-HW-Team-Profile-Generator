@@ -2,10 +2,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-// HTML generation
+//HTML generation
 const generateHtml = require("./src/start-template");
-// const employeeHtml = require("./src/employee-template");
-// const finishHtml = require("./src/finish-template");
 
 // modules for employee roles
 const Engineer = require("./lib/Engineer");
