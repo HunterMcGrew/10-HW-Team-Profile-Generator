@@ -91,7 +91,7 @@ const generateHtml = (teamMembers) => {
             cards.push(managerCard);
         }
     }
-console.log("cards", cards);
+
     const teamMemberCards = cards.join("");
 
     const genTeam = genTeamMembersonPage(teamMemberCards);
