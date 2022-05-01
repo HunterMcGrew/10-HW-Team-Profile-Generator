@@ -1,8 +1,106 @@
 // function to generate index.html 
 
-const startHtml = () => {
+// generate intern card for html
+const genIntern = (intern) => {
 
-    const html = `<!DOCTYPE html>
+    return `<div class="generated">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="white">${intern.name}</h3>
+            <h3 class="white">${intern.role}</h3>
+        </div>
+        <div class="card-body-wrapper">
+            <div class="card-body">
+                <ul>
+                    <li class="liElement">ID: ${intern.id}</li>
+                    <li class="liElement">Email: ${intern.email}</li>
+                    <li class="liElement">School: ${intern.roleType}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+`;
+};
+
+const genEngineer = (engineer) => {
+
+    return `<div class="generated">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="white">${engineer.name}</h3>
+            <h3 class="white">${engineer.role}</h3>
+        </div>
+        <div class="card-body-wrapper">
+            <div class="card-body">
+                <ul>
+                    <li class="liElement">ID: ${engineer.id}</li>
+                    <li class="liElement">Email: ${engineer.email}</li>
+                    <li class="liElement">GitHub: <a href="https://github.com/${engineer.roleType}">${engineer.roleType}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+`;
+
+};
+
+const genManager = (manager) => {
+
+    return `<div class="generated">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="white">${manager.name}</h3>
+            <h3 class="white">${manager.role}</h3>
+        </div>
+        <div class="card-body-wrapper">
+            <div class="card-body">
+                <ul>
+                    <li class="liElement">ID: ${manager.id}</li>
+                    <li class="liElement">Email: ${manager.email}</li>
+                    <li class="liElement">Office #: ${manager.roleType}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+`;
+};
+
+const generateHtml = (teamMembers) => {
+
+    cards = [];
+
+    for (let i = 0; i < teamMembers.length; i++) {
+        const teamMember = teamMembers[i];
+        const role = teamMember.role;
+
+        if (role === "Intern") {
+            const internCard = genIntern(teamMember);
+            cards.push(internCard);
+        }
+
+        if (role === "Engineer") {
+            const engineerCard = genEngineer(teamMember);
+            cards.push(engineerCard);
+        }
+
+        if (role === "Manager") {
+            const managerCard = genManager(teamMember);
+            cards.push(managerCard);
+        }
+    }
+console.log("cards", cards);
+    const teamMemberCards = cards.join("");
+
+    const genTeam = genTeamMembersonPage(teamMemberCards);
+    return genTeam;
+};
+
+const genTeamMembersonPage = (teamMemberCards) => {
+
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -18,168 +116,15 @@ const startHtml = () => {
         </header>
     
         <main id="main">
-    `;
-};
-
-// generate intern card for html
-const genIntern = (intern) => {
-
-    return `<div class="generated">
-    <div class="card">
-        <div class="card-header">
-            <h3 class="white">${Intern.name}</h3>
-            <h3 class="white">${Intern.role}</h3>
-        </div>
-        <div class="card-body-wrapper">
-            <div class="card-body">
-                <ul>
-                    <li class="liElement">ID: ${Intern.id}</li>
-                    <li class="liElement">Email: ${Intern.email}</li>
-                    <li class="liElement">GitHub: ${Intern.roleType}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-`;
-};
-
-const genEngineer = (engineer) => {
-
-    return `<div class="generated">
-    <div class="card">
-        <div class="card-header">
-            <h3 class="white">${Engineer.name}</h3>
-            <h3 class="white">${Engineer.role}</h3>
-        </div>
-        <div class="card-body-wrapper">
-            <div class="card-body">
-                <ul>
-                    <li class="liElement">ID: ${Engineer.id}</li>
-                    <li class="liElement">Email: ${Engineer.email}</li>
-                    <li class="liElement">GitHub: ${Engineer.roleType}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-`;
-
-};
-
-const genManager = (manager) => {
-
-    return `<div class="generated">
-    <div class="card">
-        <div class="card-header">
-            <h3 class="white">${Manager.name}</h3>
-            <h3 class="white">${Manager.role}</h3>
-        </div>
-        <div class="card-body-wrapper">
-            <div class="card-body">
-                <ul>
-                    <li class="liElement">ID: ${Manager.id}</li>
-                    <li class="liElement">Email: ${Manager.email}</li>
-                    <li class="liElement">GitHub: ${Manager.roleType}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-`;
-};
-
-    // add teamMembers  ++++ cant just loop thru this object array since it's defined Manager.name, Intern.name, Engineer.name...
-
-//     for (let i = 0; i < teamMembers.length; i++) { 
-
-//         const html2 = `<div class="generated">
-//         <div class="card">
-//             <div class="card-header">
-//                 <h3 class="white">${name}</h3>
-//                 <h3 class="white">${role}</h3>
-//             </div>
-//             <div class="card-body-wrapper">
-//                 <div class="card-body">
-//                     <ul>
-//                         <li class="liElement">ID: ${id}</li>
-//                         <li class="liElement">Email: ${email}</li>
-//                         <li class="liElement">GitHub: ${roleType}</li>
-//                     </ul>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-// `;
-//     html.push(html2);
-//     };
-
-    const html3 = `</main>
+        <!-- generated cards -->
+        ${teamMemberCards}
+        </main>
         
     <script src="./index.js"></script>
-</body>
-</html>
-`
-
-    return (html + html3);
-    
-
-// const generateTeamMember = () => {  // need some kind of array to cycle through all teamMembers and do this function until it's over and join/merge it with top and bottom HTML files.
-
-//     for (let i = 0; i < teamMembers.length; i++) {
-
-//         const html2 = `<div class="generated">
-//     <div class="card">
-//         <div class="card-header">
-//             <h3 class="white">${name}</h3>
-//             <h3 class="white">${role}</h3>
-//         </div>
-//         <div class="card-body-wrapper">
-//             <div class="card-body">
-//                 <ul>
-//                     <li class="liElement">ID: ${id}</li>
-//                     <li class="liElement">Email: ${email}</li>
-//                     <li class="liElement">GitHub: ${roleType}</li>
-//                 </ul>
-//             </div>
-//         </div>
-//     </div>
-// </div>
-// `
-//     html.push(html2);
-//     }
-
-//     const html2 = `<div class="generated">
-//     <div class="card">
-//         <div class="card-header">
-//             <h3 class="white">${name}</h3>
-//             <h3 class="white">${role}</h3>
-//         </div>
-//         <div class="card-body-wrapper">
-//             <div class="card-body">
-//                 <ul>
-//                     <li class="liElement">ID: ${id}</li>
-//                     <li class="liElement">Email: ${email}</li>
-//                     <li class="liElement">GitHub: ${roleType}</li>
-//                 </ul>
-//             </div>
-//         </div>
-//     </div>
-// </div>
-// `
-//     return html2;
-// };
-
-// const finishHtml = () => {
-
-//     const html3 = `</main>
-        
-//     <script src="./index.js"></script>
-// </body>
-// </html>
-// `
-//     return html3;
-// };
+    </body>
+    </html>
+    `;
+};
 
 
 module.exports = generateHtml; 
@@ -188,3 +133,4 @@ module.exports = generateHtml;
 // top portion generated by a function
 // middle portion generated by # of team members
 // bottom function to close the HTML and BODY elements. 
+// add teamMembers  ++++ cant just loop thru this object array since it's defined Manager.name, Intern.name, Engineer.name...
