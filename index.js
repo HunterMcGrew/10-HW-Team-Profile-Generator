@@ -121,10 +121,23 @@ const addTeamMember = () => {
         teamMembers.push(teamMember);  // push teamMember to teamMembers Array
 
         if (addMore === "yes") {
-            return addTeamMember();
+            return addTeamMember(teamMembers);
+        } else {
+            return teamMembers;
         };
 
     })
+};
+
+const writeFile = data => {
+    fs.writeFile("./dist/index.html", data, err => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Your Team Profile has been successfully generated!");
+        }
+    }
+    )
 };
 
 
@@ -132,4 +145,5 @@ addTeamMember()
 .then(teamMembers => {
     return generateHtml(teamMembers);
 })
+.then(indexHtml  => {return writeFile(indexHtml)})
 .catch((err) => {console.log(err)})
