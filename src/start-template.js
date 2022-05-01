@@ -13,7 +13,7 @@ const genIntern = (intern) => {
             <div class="card-body">
                 <ul>
                     <li class="liElement">ID: ${intern.id}</li>
-                    <li class="liElement">Email: ${intern.email}</li>
+                    <li class="liElement">Email: <a href="mailto:${intern.email}">${intern.email}</a></li>
                     <li class="liElement">School: ${intern.roleType}</li>
                 </ul>
             </div>
@@ -35,7 +35,7 @@ const genEngineer = (engineer) => {
             <div class="card-body">
                 <ul>
                     <li class="liElement">ID: ${engineer.id}</li>
-                    <li class="liElement">Email: ${engineer.email}</li>
+                    <li class="liElement">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
                     <li class="liElement">GitHub: <a href="https://github.com/${engineer.roleType}">${engineer.roleType}</a></li>
                 </ul>
             </div>
@@ -58,7 +58,7 @@ const genManager = (manager) => {
             <div class="card-body">
                 <ul>
                     <li class="liElement">ID: ${manager.id}</li>
-                    <li class="liElement">Email: ${manager.email}</li>
+                    <li class="liElement">Email: <a href="mailto:${manager.email}">${manager.email}</a></li>
                     <li class="liElement">Office #: ${manager.roleType}</li>
                 </ul>
             </div>

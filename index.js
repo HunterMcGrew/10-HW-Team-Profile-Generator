@@ -18,9 +18,6 @@ const teamMembers = [];
 // employee question prompts
 const addTeamMember = () => {
 
-    // check const
-    console.log(teamMembers);
-
     return inquirer.prompt([
         {
             type: "list",
@@ -75,12 +72,12 @@ const addTeamMember = () => {
         },
         {
             type: "input",
-            message: "What is their GitHub profile link?",
+            message: "What is their GitHub username?",
             name: "roleType",
             when: input => input.role === "Engineer",
             validate: (answer) => {
                 if (answer.legnth < 1) {
-                    return console.log("\nPlease enter a valid GitHub profile link...\n");
+                    return console.log("\nPlease enter a valid GitHub username...\n");
                 }
                 return true;
             }

@@ -38,13 +38,11 @@ ul {
     padding: 0;
 }
 
-.separator {
-    padding: 10px 0px;
-}
-
 .generated {
+    display: flex;
     margin-right: 20px;
     margin-top: 10px;
+    align-self: stretch;
 }
 
 .card {
