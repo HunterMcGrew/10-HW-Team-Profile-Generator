@@ -36,7 +36,7 @@ const genEngineer = (engineer) => {
                 <ul>
                     <li class="liElement">ID: ${engineer.id}</li>
                     <li class="liElement">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></li>
-                    <li class="liElement">GitHub: <a href="https://github.com/${engineer.roleType}">${engineer.roleType}</a></li>
+                    <li class="liElement">GitHub: <a href="https://github.com/${engineer.roleType}" target="_blank">${engineer.roleType}</a></li>
                 </ul>
             </div>
         </div>
